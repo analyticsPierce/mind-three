@@ -3,8 +3,10 @@ ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../../config/environment', __FILE__)
 
 require 'rspec/rails'
+require 'rspec/autorun'
 require 'shoulda/matchers'
 require 'webmock/rspec'
+require 'capybara/rails'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
 
@@ -18,6 +20,7 @@ RSpec.configure do |config|
   end
 
   config.include Features, type: :feature
+  config.include Capybara::DSL 
   config.include Formulaic::Dsl, type: :feature
 
   config.infer_base_class_for_anonymous_controllers = false
